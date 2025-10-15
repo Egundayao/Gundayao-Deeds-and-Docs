@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import guLogo from '../assets/GU.svg'
 import pic1 from '../assets/pic1.jpg'
 import pic2 from '../assets/pic2.jpg'
@@ -20,133 +18,13 @@ function ResponsiveHeroImage() {
 }
 
 function Homes() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
 
   return (
     <div className="w-full bg-gray-900 relative overflow-hidden">
       {/* Hero Section */}
       <section className="w-full relative overflow-hidden h-auto">
         <ResponsiveHeroImage />
-        
-        {/* Fixed Header - Follows Scroll */}
-        <header className="fixed top-2 sm:top-3 md:top-4 lg:top-6 xl:top-8 
-                           left-1/2 transform -translate-x-1/2 z-50 
-                           w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] xl:w-[75%] 2xl:w-[70%]
-                           max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-6xl 
-                           px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8">
-          <div className="bg-white/95 backdrop-blur-md rounded-full 
-                          px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16
-                          py-2 sm:py-3 md:py-4 lg:py-5 xl:py-6
-                          shadow-lg sm:shadow-xl md:shadow-2xl 
-                          border border-gray-100/50
-                          transition-all duration-300 ease-in-out
-                          relative">
-            <nav className="flex items-center justify-between w-full">
-                            {/* Logo - Elegant Text */}
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 
-                              font-bold text-gray-900 tracking-wider
-                              transition-all duration-300 hover:text-gray-700
-                              font-serif relative group cursor-pointer">
-                <span className="relative z-10">G</span>
-                <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 
-                              font-bold text-gray-900 tracking-wider
-                              transition-all duration-300 hover:text-gray-700
-                              font-serif relative group cursor-pointer">D&D</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-transparent 
-                                opacity-0 group-hover:opacity-20 transition-opacity duration-300 
-                                rounded-md"></div>
-              </div>
-              
-              {/* Desktop Navigation Links */}
-              <div className="hidden sm:flex items-center 
-                              space-x-2 sm:space-x-3 md:space-x-4 lg:space-x-6 xl:space-x-8 2xl:space-x-12 
-                              text-gray-700">
-                <Link to="/" className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl
-                                        font-medium hover:text-gray-900 
-                                        transition-all duration-300 hover:scale-105 
-                                        relative group whitespace-nowrap">
-                  Home
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <Link to="/services" className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl
-                                               font-medium hover:text-gray-900 
-                                               transition-all duration-300 hover:scale-105 
-                                               relative group whitespace-nowrap">
-                  Services
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <Link to="/about" className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl
-                                             font-medium hover:text-gray-900 
-                                             transition-all duration-300 hover:scale-105 
-                                             relative group whitespace-nowrap">
-                  About
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <Link to="/inquire" className="text-xs md:text-sm lg:text-base xl:text-lg 2xl:text-xl
-                                               font-medium hover:text-gray-900 
-                                               transition-all duration-300 hover:scale-105 
-                                               relative group whitespace-nowrap">
-                  Inquire
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              </div>
 
-              {/* Mobile Menu Button */}
-              <button 
-                onClick={toggleMenu}
-                className="sm:hidden flex flex-col justify-center items-center w-6 h-6 space-y-1"
-                aria-label="Toggle menu">
-                <span className={`w-5 h-0.5 bg-gray-800 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                <span className={`w-5 h-0.5 bg-gray-800 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                <span className={`w-5 h-0.5 bg-gray-800 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-              </button>
-            </nav>
-
-            {/* Mobile Dropdown Menu */}
-            {isMenuOpen && (
-              <div className="sm:hidden absolute top-full left-0 right-0 mt-2 
-                              bg-white/95 backdrop-blur-md rounded-2xl 
-                              shadow-xl border border-gray-100/50
-                              py-4 px-4
-                              transition-all duration-300 ease-in-out">
-                <div className="flex flex-col space-y-3">
-                  <Link to="/" 
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-sm font-medium text-gray-700 hover:text-gray-900 
-                                   py-2 px-3 rounded-lg hover:bg-gray-100/50
-                                   transition-all duration-200">
-                    Home
-                  </Link>
-                  <Link to="/services" 
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-sm font-medium text-gray-700 hover:text-gray-900 
-                                   py-2 px-3 rounded-lg hover:bg-gray-100/50
-                                   transition-all duration-200">
-                    Services
-                  </Link>
-                  <Link to="/about" 
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-sm font-medium text-gray-700 hover:text-gray-900 
-                                   py-2 px-3 rounded-lg hover:bg-gray-100/50
-                                   transition-all duration-200">
-                    About
-                  </Link>
-                  <Link to="/inquire" 
-                        onClick={() => setIsMenuOpen(false)}
-                        className="text-sm font-medium text-gray-700 hover:text-gray-900 
-                                   py-2 px-3 rounded-lg hover:bg-gray-100/50
-                                   transition-all duration-200">
-                    Inquire
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-        </header>
       </section>
 
       {/* Second Section - We're Dedicated */}
