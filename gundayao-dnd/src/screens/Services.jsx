@@ -2,6 +2,7 @@ import Footer from '../components/footer'
 import houseImg from '../assets/house.jpg'
 import carImg from '../assets/car.jpg'
 import assetImg from '../assets/asset.jpg'
+import { motion } from 'framer-motion'
 
 function Services() {
   return (
@@ -72,14 +73,30 @@ function Services() {
         {/* Services Showcase Section */}
         <div className="mt-8 space-y-16">
           {/* Dream Home Section */}
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-            <div className="flex-1">
+          <motion.div 
+            className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.div 
+              className="flex-1"
+              animate={{ 
+                y: [0, -10, 0],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
               <img 
                 src={houseImg} 
                 alt="Dream Home" 
                 className="w-full h-auto rounded-2xl shadow-xl"
               />
-            </div>
+            </motion.div>
             <div className="flex-1 space-y-6">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
                 Let us help you get your Dream Home!
@@ -94,7 +111,7 @@ function Services() {
                 Inquire
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Section Divider */}
           <div className="w-full px-4 sm:px-6 lg:px-8">
@@ -102,14 +119,30 @@ function Services() {
           </div>
 
           {/* Car Ownership Section */}
-          <div className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-12">
-            <div className="flex-1">
+          <motion.div 
+            className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-12"
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.div 
+              className="flex-1"
+              animate={{ 
+                y: [0, -10, 0]
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
               <img 
                 src={carImg} 
                 alt="Your Car" 
                 className="w-full h-auto rounded-2xl shadow-xl"
               />
-            </div>
+            </motion.div>
             <div className="flex-1 space-y-6">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
                 Your Car is Yours
@@ -124,7 +157,7 @@ function Services() {
                 Inquire
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Section Divider */}
           <div className="w-full px-4 sm:px-6 lg:px-8">
@@ -132,14 +165,30 @@ function Services() {
           </div>
 
           {/* Assets Security Section */}
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-            <div className="flex-1">
+          <motion.div 
+            className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <motion.div 
+              className="flex-1"
+              animate={{ 
+                y: [0, -10, 0]
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
               <img 
                 src={assetImg} 
                 alt="Secure Assets" 
                 className="w-full h-auto rounded-2xl shadow-xl"
               />
-            </div>
+            </motion.div>
             <div className="flex-1 space-y-6">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
                 Secure Your Assets and Other Valuables
@@ -154,7 +203,7 @@ function Services() {
                 Inquire
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <Footer />
