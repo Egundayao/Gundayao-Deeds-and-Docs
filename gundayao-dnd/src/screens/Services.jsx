@@ -1,4 +1,7 @@
 import Footer from '../components/footer'
+import houseImg from '../assets/house.jpg'
+import carImg from '../assets/car.jpg'
+import assetImg from '../assets/asset.jpg'
 
 function Services() {
   return (
@@ -57,6 +60,99 @@ function Services() {
               <div className="text-gray-600 text-sm max-w-xs">
                 A trusted team of liaison officers, paralegals, and legal consultants at your service.
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Divider */}
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-16">
+          <div className="h-px bg-gray-400"></div>
+        </div>
+
+        {/* Services Showcase Section */}
+        <div className="mt-8 space-y-16">
+          {/* Dream Home Section */}
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            <div className="flex-1">
+              <img 
+                src={houseImg} 
+                alt="Dream Home" 
+                className="w-full h-auto rounded-2xl shadow-xl"
+              />
+            </div>
+            <div className="flex-1 space-y-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+                Let us help you get your Dream Home!
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Buying or selling property doesn't have to be stressful. 
+                We'll handle all the legal documents, title transfers, 
+                and government requirements—so you can focus on 
+                moving into your dream home.
+              </p>
+              <button className="bg-gray-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
+                Inquire
+              </button>
+            </div>
+          </div>
+
+          {/* Section Divider */}
+          <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="h-px bg-gray-400"></div>
+          </div>
+
+          {/* Car Ownership Section */}
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-8 lg:gap-12">
+            <div className="flex-1">
+              <img 
+                src={carImg} 
+                alt="Your Car" 
+                className="w-full h-auto rounded-2xl shadow-xl"
+              />
+            </div>
+            <div className="flex-1 space-y-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+                Your Car is Yours
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Avoid the headaches of ownership transfers, 
+                registration updates, and paperwork. We'll ensure 
+                your car's legal documents are processed correctly 
+                and on time.
+              </p>
+              <button className="bg-gray-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
+                Inquire
+              </button>
+            </div>
+          </div>
+
+          {/* Section Divider */}
+          <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="h-px bg-gray-400"></div>
+          </div>
+
+          {/* Assets Security Section */}
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            <div className="flex-1">
+              <img 
+                src={assetImg} 
+                alt="Secure Assets" 
+                className="w-full h-auto rounded-2xl shadow-xl"
+              />
+            </div>
+            <div className="flex-1 space-y-6">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+                Secure Your Assets and Other Valuables
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                From aircraft to investments, we process legal 
+                documentation for all your high-value assets. Have 
+                peace of mind knowing everything is legally sound 
+                and properly recorded.
+              </p>
+              <button className="bg-gray-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-colors duration-300">
+                Inquire
+              </button>
             </div>
           </div>
         </div>
