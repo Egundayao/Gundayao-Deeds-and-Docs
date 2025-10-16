@@ -1,6 +1,24 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
+// Preload route on hover
+const preloadRoute = (routeName) => {
+  switch (routeName) {
+    case 'services':
+      import('../screens/Services')
+      break
+    case 'about':
+      import('../screens/About')
+      break
+    case 'inquire':
+      import('../screens/Inquire')
+      break
+    case 'home':
+      import('../screens/Homes')
+      break
+  }
+}
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
@@ -34,6 +52,7 @@ function Header() {
           {/* Logo - Elegant Text */}
           <Link 
             to="/"
+            onMouseEnter={() => preloadRoute('home')}
             className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl 
                        font-bold ${isServicesPage ? 'text-white hover:text-gray-300' : 'text-gray-900 hover:text-gray-700'} tracking-wider
                        transition-all duration-300
@@ -54,6 +73,7 @@ function Header() {
                           ${isServicesPage ? 'text-gray-300' : 'text-gray-700'}`}>
             <Link 
               to="/services" 
+              onMouseEnter={() => preloadRoute('services')}
               className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl
                          font-medium transition-all duration-300 hover:scale-105 
                          relative group whitespace-nowrap ${
@@ -67,6 +87,7 @@ function Header() {
             </Link>
             <Link 
               to="/about" 
+              onMouseEnter={() => preloadRoute('about')}
               className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl
                          font-medium transition-all duration-300 hover:scale-105 
                          relative group whitespace-nowrap ${
@@ -80,6 +101,7 @@ function Header() {
             </Link>
             <Link 
               to="/inquire" 
+              onMouseEnter={() => preloadRoute('inquire')}
               className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl
                          font-medium transition-all duration-300 hover:scale-105 
                          relative group whitespace-nowrap ${

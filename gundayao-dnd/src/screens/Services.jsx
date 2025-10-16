@@ -1,4 +1,5 @@
 import Footer from '../components/footer'
+import OptimizedImage from '../components/OptimizedImage'
 import houseImg from '../assets/house.jpg'
 import carImg from '../assets/car.jpg'
 import assetImg from '../assets/asset.jpg'
@@ -91,7 +92,7 @@ function Services() {
                 ease: "easeInOut"
               }}
             >
-              <img 
+              <OptimizedImage 
                 src={houseImg} 
                 alt="Dream Home" 
                 className="w-full h-auto rounded-2xl shadow-xl"
@@ -137,7 +138,7 @@ function Services() {
                 ease: "easeInOut"
               }}
             >
-              <img 
+              <OptimizedImage 
                 src={carImg} 
                 alt="Your Car" 
                 className="w-full h-auto rounded-2xl shadow-xl"
@@ -183,7 +184,7 @@ function Services() {
                 ease: "easeInOut"
               }}
             >
-              <img 
+              <OptimizedImage 
                 src={assetImg} 
                 alt="Secure Assets" 
                 className="w-full h-auto rounded-2xl shadow-xl"
