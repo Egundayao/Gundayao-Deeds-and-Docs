@@ -1,55 +1,66 @@
 function Footer() {
   return (
-    <footer className="text-white py-8 sm:py-12 lg:py-16" style={{ backgroundColor: '#0c0c0cff' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
+    <footer className="text-white py-6 sm:py-8 lg:py-10" style={{ backgroundColor: '#0c0c0cff' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Footer Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
 
           {/* Use Cases */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 lg:mb-6">Use cases</h3>
-            <ul className="space-y-2 lg:space-y-3 text-sm lg:text-base text-gray-300">
-              <li><a href="#" className="hover:text-white transition-colors">UI design</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">UX design</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Wireframing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Diagramming</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Brainstorming</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Online whiteboard</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Team collaboration</a></li>
+            <h3 className="text-lg font-semibold mb-3 lg:mb-4">Use cases</h3>
+            <ul className="space-y-1.5 lg:space-y-2 text-sm text-gray-300">
+              <li><a href="#" className="hover:text-white transition-colors">Personal document storage</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Real estate deed management</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Legal file sharing</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Business contracts</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Property verification</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Secure archiving</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Paperless transactions</a></li>
             </ul>
           </div>
 
           {/* Explore */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 lg:mb-6">Explore</h3>
-            <ul className="space-y-2 lg:space-y-3 text-sm lg:text-base text-gray-300">
-              <li><a href="#" className="hover:text-white transition-colors">Design</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Prototyping</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Development features</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Design systems</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Collaboration features</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Design process</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">FigJam</a></li>
+            <h3 className="text-lg font-semibold mb-3 lg:mb-4">Explore</h3>
+            <ul className="space-y-1.5 lg:space-y-2 text-sm text-gray-300">
+              <li><a href="#" className="hover:text-white transition-colors">How it works</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Pricing plans</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Security features</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Digital verification system</a></li>
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Blog */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 lg:mb-6">Resources</h3>
-            <ul className="space-y-2 lg:space-y-3 text-sm lg:text-base text-gray-300">
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Best practices</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Colors</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Color wheel</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
+            <h3 className="text-lg font-semibold mb-3 lg:mb-4">Blog</h3>
+            <ul className="space-y-1.5 lg:space-y-2 text-sm text-gray-300">
+              <li><a href="#" className="hover:text-white transition-colors">FAQs</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Legal compliance</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Support center</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Developers</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Resource library</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
             </ul>
+          </div>
+
+          {/* Contact/Company Info - Fourth Column */}
+          <div className="md:col-span-1">
+            <h3 className="text-lg font-semibold mb-3 lg:mb-4">Contact</h3>
+            <div className="space-y-1.5 lg:space-y-2 text-sm text-gray-300">
+              <p>Gundayao Deeds & Docs</p>
+              <p>Unit 804, Westpoint Tower</p>
+              <p>Makati Avenue, Brgy. Bel-Air</p>
+              <p>Makati City, Metro Manila</p>
+              <p>1209, Philippines</p>
+              <div className="pt-2">
+                <p className="text-xs text-gray-400">©TDM. All rights reserved.</p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Social Media Icons */}
-        <div className="flex justify-center mt-12 lg:mt-16 space-x-6">
+        <div className="flex justify-center mt-8 lg:mt-10 space-x-6">
           <a href="#" className="text-gray-400 hover:text-white transition-colors">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>

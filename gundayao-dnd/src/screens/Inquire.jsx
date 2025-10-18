@@ -3,202 +3,282 @@ import Footer from '../components/footer'
 
 function Inquire() {
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    phone: '',
-    service: '',
-    message: ''
+    mobileNumber: '',
+    location: '',
+    serviceType: [],
+    message: '',
+    agreeToPolicy: false
   })
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }))
+  }
+
+  const handleServiceChange = (service) => {
+    setFormData(prev => ({
+      ...prev,
+      serviceType: prev.serviceType.includes(service)
+        ? prev.serviceType.filter(s => s !== service)
+        : [...prev.serviceType, service]
+    }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle form submission here
     console.log('Form submitted:', formData)
     alert('Thank you for your inquiry! We will contact you soon.')
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-8">
-            Get in Touch
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to get started? Contact us today for professional document processing services
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Top Section - Image and Form Side by Side */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+          {/* Left Side - Hero Image - Hidden on Mobile */}
+          <div className="hidden lg:flex justify-center items-center">
+            <div 
+              className="w-full max-w-2xl h-[750px] rounded-3xl shadow-2xl bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1627514818551-db74fc995e9b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=812')`
+              }}
+            />
+          </div>
+          
+          {/* Right Side - Contact Form */}
+          <div className="flex justify-center items-center pt-12 lg:pt-12">
+            <div className="w-full max-w-lg">
+            <div className="mb-8">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+                Get in contact with the expert that is perfect for your concerns.
+              </h2>
+            </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Form */}
-          <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  placeholder="Enter your full name"
-                />
+              {/* Name Fields */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">First name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    placeholder="First name"
+                    className="w-full px-4 py-3 border-2 border-gray-800 bg-gray-800/5 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition-all"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Last name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    placeholder="Last name"
+                    className="w-full px-4 py-3 border-2 border-gray-800 bg-gray-800/5 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition-all"
+                    required
+                  />
+                </div>
               </div>
 
+              {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address *
-                </label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                 <input
                   type="email"
-                  id="email"
                   name="email"
-                  required
                   value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  placeholder="Enter your email address"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  placeholder="Enter your phone number"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                  Service Needed
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
-                  <option value="">Select a service</option>
-                  <option value="process">Process Assets</option>
-                  <option value="transfer">Transfer Titles</option>
-                  <option value="ownership">Take Ownership</option>
-                  <option value="legal">Legal Services</option>
-                  <option value="consultation">General Consultation</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
+                  onChange={handleInputChange}
+                  placeholder="Ex: GundayaoDnD@gmail.com"
+                  className="w-full px-4 py-3 border-2 border-gray-800 bg-gray-800/5 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition-all"
                   required
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
-                  placeholder="Tell us about your needs and how we can help you"
                 />
               </div>
 
+              {/* Mobile and Location */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
+                  <input
+                    type="tel"
+                    name="mobileNumber"
+                    value={formData.mobileNumber}
+                    onChange={handleInputChange}
+                    placeholder="+63 000 000 0000"
+                    className="w-full px-4 py-3 border-2 border-gray-800 bg-gray-800/5 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition-all"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                  <input
+                    type="text"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleInputChange}
+                    placeholder="ex. Makati City, NCR"
+                    className="w-full px-4 py-3 border-2 border-gray-800 bg-gray-800/5 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition-all"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Type of Service */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">Type of Service</label>
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    'Property Title Transfer',
+                    'Vehicle Ownership Transfer', 
+                    'Asset Ownership Transfer',
+                    'Legal Consultation',
+                    'Others'
+                  ].map((service) => (
+                    <label key={service} className="flex items-start space-x-2 cursor-pointer group col-span-1">
+                      <input
+                        type="checkbox"
+                        checked={formData.serviceType.includes(service)}
+                        onChange={() => handleServiceChange(service)}
+                        className="w-4 h-4 mt-1 rounded border-2 border-gray-800 bg-gray-800/5 text-gray-900 focus:ring-gray-800 focus:ring-2"
+                      />
+                      <span className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors leading-tight">{service}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Message us!</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Enter message here..."
+                  rows={4}
+                  className="w-full px-4 py-3 border-2 border-gray-800 bg-gray-800/5 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-gray-800 focus:border-gray-800 transition-all resize-none"
+                  required
+                />
+              </div>
+
+              {/* Privacy Policy */}
+              <div className="flex items-start space-x-3">
+                <input
+                  type="checkbox"
+                  name="agreeToPolicy"
+                  checked={formData.agreeToPolicy}
+                  onChange={handleInputChange}
+                  className="w-4 h-4 mt-1 rounded border-2 border-gray-800 bg-gray-800/5 text-gray-900 focus:ring-gray-800 focus:ring-2"
+                  required
+                />
+                <span className="text-sm text-gray-600">
+                  You agree to our{' '}
+                  <a 
+                    href="/privacy-policy" 
+                    className="text-sm text-gray-800 underline hover:text-gray-900 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    privacy policy
+                  </a>
+                </span>
+              </div>
+
+              {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg font-medium 
-                           hover:bg-gray-800 transition-colors duration-300 
-                           focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
-                Send Message
+                className="w-full bg-gray-900 text-white py-4 px-6 rounded-lg text-base font-semibold hover:bg-gray-800 transition-all duration-200 shadow-lg"
+              >
+                Send Details
               </button>
             </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Section - Office Information and Map Side by Side */}
+      <div className="max-w-7xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          {/* Left Side - Office Information */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-xl">
+              <div 
+                className="rounded-3xl p-8 lg:p-12 shadow-2xl"
+                style={{ backgroundColor: '#1E1D1D' }}
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-100 mb-8">
+                  Consult us in person by visiting our office!
+                </h2>
+                
+                <div className="space-y-6 text-gray-300">
+                  <div>
+                    <h3 className="font-semibold text-xl text-gray-100 mb-3">Unit 804 Westpoint Tower</h3>
+                    <p className="text-base leading-relaxed">
+                      Makati Avenue<br />
+                      Brgy. Bel-Air<br />
+                      Makati City<br />
+                      Metro Manila<br />
+                      1209, Philippines
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Office Hours Panel */}
+              <div 
+                className="rounded-3xl p-6 lg:p-8 shadow-2xl mt-6"
+                style={{ backgroundColor: '#1E1D1D' }}
+              >
+                <p className="text-base lg:text-lg text-gray-100 text-center font-medium">
+                  We are only open from 8am to 5pm
+                </p>
+                <p className="text-base lg:text-lg text-gray-100 text-center font-medium">
+                  Monday to Friday
+                </p>
+                <p className="text-base lg:text-lg text-gray-100 text-center font-medium">
+                  Visit us!
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-3xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <svg className="w-6 h-6 text-blue-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Address</h4>
-                    <p className="text-gray-600">Unit 804, Westpoint Tower<br />Makati Avenue, Brgy. Bel-Air<br />Makati City, Metro Manila, 1209</p>
-                  </div>
+          {/* Right Side - Interactive Map */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-2xl">
+              <div 
+                className="rounded-3xl p-6 shadow-2xl"
+                style={{ backgroundColor: '#1E1D1D' }}
+              >
+                <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.2486361937244!2d121.01375747595976!3d14.563614985875824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90312c929e7%3A0x8364f85b2dc4b0e5!2sWestpoint%20Tower!5e0!3m2!1sen!2sph!4v1697459200000!5m2!1sen!2sph&markers=color:red%7Clabel:G%7C14.563615,121.015830"
+                    width="100%"
+                    height="600"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Gundayao Deeds & Docs Office Location"
+                    className="w-full"
+                  />
                 </div>
-
-                <div className="flex items-start space-x-4">
-                  <svg className="w-6 h-6 text-green-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Phone</h4>
-                    <p className="text-gray-600">+63 (02) 8123 4567</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <svg className="w-6 h-6 text-purple-600 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Email</h4>
-                    <p className="text-gray-600">info@gundayaodeedsdocs.com</p>
-                  </div>
+                
+                {/* Address Footer */}
+                <div className="text-center mt-4">
+                  <p className="text-sm text-gray-300">
+                    @TDM, Unit 804, Westpoint Tower, Makati Avenue, Brgy. Bel-Air, Makati City, Metro Manila, 1209 Philippines
+                  </p>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-8 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Business Hours</h3>
-              <div className="space-y-2 text-gray-600">
-                <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span>8:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span>9:00 AM - 3:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>Closed</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl p-8 text-white">
-              <h3 className="text-xl font-bold mb-4">Need Immediate Assistance?</h3>
-              <p className="text-gray-300 mb-4">
-                For urgent document processing needs, contact our emergency hotline.
-              </p>
-              <a 
-                href="tel:+639123456789" 
-                className="inline-flex items-center bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors">
-                Call Emergency Hotline
-              </a>
             </div>
           </div>
         </div>

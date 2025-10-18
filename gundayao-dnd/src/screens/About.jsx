@@ -1,7 +1,8 @@
 import aboutLogo from '../assets/About.svg'
 import visionImage from '../assets/Vision.png'
 import Footer from '../components/footer'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // Responsive Hero Image Component
 function ResponsiveHeroImage() {
@@ -26,7 +27,7 @@ function PartnersCarousel() {
     },
     {
       id: 2,
-      name: "Rebeje",
+      name: "Rebace",
       image: "https://images.unsplash.com/photo-1620860421940-11d849067893?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=784",
       color: "bg-blue-400"
     },
@@ -38,7 +39,7 @@ function PartnersCarousel() {
     },
     {
       id: 4,
-      name: "Law Firm",
+      name: "Local Law Firms",
       image: "https://images.unsplash.com/photo-1535905557558-afc4877a26fc?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687",
       color: "bg-gray-800"
     }
@@ -135,6 +136,92 @@ function PartnersCarousel() {
 }
 
 function About() {
+  // Animation states for each section
+  const [foundingMembersVisible, setFoundingMembersVisible] = useState(false)
+  const [missionVisionVisible, setMissionVisionVisible] = useState(false)
+  const [historyVisible, setHistoryVisible] = useState(false)
+
+  // Navigation hook
+  const navigate = useNavigate()
+
+  // Refs for each section
+  const foundingMembersRef = useRef(null)
+  const missionVisionRef = useRef(null)
+  const historyRef = useRef(null)
+
+  // Navigation handler
+  const handleInquireClick = () => {
+    navigate('/inquire')
+  }
+
+  // Intersection Observer for Founding Members section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry.isIntersecting) {
+          setFoundingMembersVisible(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px 0px'
+      }
+    )
+
+    if (foundingMembersRef.current) {
+      observer.observe(foundingMembersRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Intersection Observer for Mission and Vision section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry.isIntersecting) {
+          setMissionVisionVisible(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px 0px'
+      }
+    )
+
+    if (missionVisionRef.current) {
+      observer.observe(missionVisionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  // Intersection Observer for History section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry.isIntersecting) {
+          setHistoryVisible(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px 0px'
+      }
+    )
+
+    if (historyRef.current) {
+      observer.observe(historyRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
   return (
     <div className="w-full bg-gray-900 relative overflow-hidden">
       {/* Hero Section */}
@@ -143,11 +230,15 @@ function About() {
       </section>
 
       {/* Founding Members Section */}
-      <section className="bg-white py-8 lg:py-12">
+      <section ref={foundingMembersRef} className="bg-white py-8 lg:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Text Content */}
-            <div className="order-2 lg:order-1">
+            <div className={`order-2 lg:order-1 transform transition-all duration-700 ease-out ${
+              foundingMembersVisible 
+                ? 'translate-x-0 opacity-100' 
+                : '-translate-x-12 opacity-0'
+            }`}>
               <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4 lg:mb-6">
                 Our Founding Members
               </h2>
@@ -185,7 +276,11 @@ function About() {
             </div>
 
             {/* Right Side - Image */}
-            <div className="order-1 lg:order-2">
+            <div className={`order-1 lg:order-2 transform transition-all duration-700 ease-out delay-300 ${
+              foundingMembersVisible 
+                ? 'translate-x-0 opacity-100' 
+                : 'translate-x-12 opacity-0'
+            }`}>
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1674919768570-076927525118?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074"
@@ -206,11 +301,15 @@ function About() {
       </div>
 
       {/* Mission and Vision Section */}
-      <section className="bg-white py-8 lg:py-12">
+      <section ref={missionVisionRef} className="bg-white py-8 lg:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Core Values Box */}
-            <div className="flex justify-center">
+            <div className={`flex justify-center transform transition-all duration-700 ease-out ${
+              missionVisionVisible 
+                ? 'translate-x-0 opacity-100' 
+                : '-translate-x-12 opacity-0'
+            }`}>
               {/* Black Box with Core Values - Diamond Shape with Lines */}
               <div className="bg-black rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 relative 
                               h-72 sm:h-80 md:h-96 lg:h-[28rem] xl:h-[32rem]
@@ -251,7 +350,11 @@ function About() {
             </div>
 
             {/* Right Side - Mission and Vision */}
-            <div className="space-y-8 lg:space-y-12">
+            <div className={`space-y-8 lg:space-y-12 transform transition-all duration-700 ease-out delay-300 ${
+              missionVisionVisible 
+                ? 'translate-x-0 opacity-100' 
+                : 'translate-x-12 opacity-0'
+            }`}>
               {/* Mission - Text aligned to right/end */}
               <div className="text-right">
                 <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-3 lg:mb-4">
@@ -289,11 +392,15 @@ function About() {
       </div>
 
       {/* History Section */}
-      <section className="bg-white py-8 lg:py-12">
+      <section ref={historyRef} className="bg-white py-8 lg:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Text Content */}
-            <div>
+            <div className={`transform transition-all duration-700 ease-out ${
+              historyVisible 
+                ? 'translate-x-0 opacity-100' 
+                : '-translate-x-12 opacity-0'
+            }`}>
               <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 lg:mb-6">
                 Our History
               </h2>
@@ -313,7 +420,11 @@ function About() {
             </div>
 
             {/* Right Side - Image */}
-            <div>
+            <div className={`transform transition-all duration-700 ease-out delay-300 ${
+              historyVisible 
+                ? 'translate-x-0 opacity-100' 
+                : 'translate-x-12 opacity-0'
+            }`}>
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <img 
                   src="https://images.unsplash.com/photo-1529339017023-c2f2ce633d0d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171"
@@ -388,7 +499,10 @@ function About() {
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
               Interested? Inquire now
             </h3>
-            <button className="inline-flex items-center px-8 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200">
+            <button 
+              onClick={handleInquireClick}
+              className="inline-flex items-center px-8 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors duration-200"
+            >
               Inquire Services
               <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

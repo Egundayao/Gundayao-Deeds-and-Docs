@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import guLogo from '../assets/GU.svg'
 import pic1 from '../assets/pic1.jpg'
 import pic2 from '../assets/pic2.jpg'
@@ -19,6 +20,31 @@ function ResponsiveHeroImage() {
 }
 
 function Homes() {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          // Optional: disconnect observer after first trigger
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the section is visible
+        rootMargin: '-50px 0px' // Trigger slightly before the section is fully in view
+      }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className="w-full bg-gray-900 relative overflow-hidden">
@@ -29,7 +55,7 @@ function Homes() {
       </section>
 
       {/* Second Section - We're Dedicated */}
-      <section className="bg-white flex items-center justify-center 
+      <section ref={sectionRef} className="bg-white flex items-center justify-center 
                           px-2 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12
                           py-12 sm:py-16 md:py-20 lg:py-24">
         <div className="w-full max-w-[95%] xl:max-w-[98%] 2xl:max-w-[96%]">
@@ -81,7 +107,9 @@ function Homes() {
             {/* Right Side - Service Cards */}
             <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 lg:gap-2 xl:gap-3 group">
               {/* Process Assets Card */}
-              <div className="cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2">
+              <div className={`cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2
+                              transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                              transition-all duration-700 delay-100`}>
               <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]
                               transition-all duration-700">
                 <img 
@@ -103,7 +131,9 @@ function Homes() {
             </div>
 
             {/* Transfer Titles Card */}
-            <div className="cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2">
+            <div className={`cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2
+                            transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                            transition-all duration-700 delay-300`}>
               <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]
                               transition-all duration-700">
                 <img 
@@ -125,7 +155,9 @@ function Homes() {
             </div>
 
             {/* Take Ownership Card */}
-            <div className="cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2">
+            <div className={`cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2
+                            transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                            transition-all duration-700 delay-500`}>
               <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]
                               transition-all duration-700">
                 <img 
@@ -147,7 +179,9 @@ function Homes() {
             </div>
 
             {/* Legal Services Card */}
-            <div className="cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2">
+            <div className={`cursor-pointer transition-all duration-700 group-hover:blur-sm hover:!blur-none hover:!scale-110 hover:!-translate-y-2
+                            transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}
+                            transition-all duration-700 delay-700`}>
               <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]
                               transition-all duration-700">
                 <img 
@@ -219,7 +253,7 @@ function Homes() {
                 {/* Testimonial 1 */}
                 <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                       OJ
                     </div>
                     <div className="ml-4">
@@ -235,7 +269,7 @@ function Homes() {
                 {/* Testimonial 2 */}
                 <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                       MS
                     </div>
                     <div className="ml-4">
@@ -251,7 +285,7 @@ function Homes() {
                 {/* Testimonial 3 */}
                 <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                       PS
                     </div>
                     <div className="ml-4">
@@ -267,7 +301,7 @@ function Homes() {
                 {/* Testimonial 4 */}
                 <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg">
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    <div className="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                       MK
                     </div>
                     <div className="ml-4">
